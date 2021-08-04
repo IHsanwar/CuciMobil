@@ -1,0 +1,47 @@
+{% extends "layout_plain.html" %}
+
+{% block content %}
+
+ <!-- BASIC FORM ELELEMNTS -->
+      <div class="form-panel" style="margin:0">
+          <form class="form-horizontal style-form" method="post">
+              <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Nomor polisi</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" name="nopol" value="{{ customer_nopol }}">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Nama pelanggan</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" name="owner" value="{{  customer_owner }}">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Nomor WA</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" name="phone" value="{{ customer_phone }}">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Jenis kendaraan</label>
+                  <div class="col-sm-10">
+                      <select class="form-control"  name="vehicle_model">
+						  <option value="1">Mobil</option>
+						  <option value="2">Sepeda motor</option>
+						</select>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label"> </label>
+                  <div class="col-sm-10">
+                   <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+              </div>
+          </form>
+      </div>
+
+
+{% endblock %}

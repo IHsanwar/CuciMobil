@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  background-color: white;
+}
+</style>
+<script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="/assets/libs/swalert/swal.js" ></script>
+<body onload="javascript:showSwal('success-message')" >
+
+<script>
+
+    showSwal = function(type) {
+		swal( {
+			//title: "Proses berhasil!",
+			 text: "Berhasil!",
+			 buttons: false,
+			 icon: "success",
+		});
+		$(".swal-modal").css('background-color', '#fff');
+		$(".swal-text").css('font-family', 'verdana');
+		$(".swal-overlay").css('background-color', '#fff');
+    };
+</script>
+</html>

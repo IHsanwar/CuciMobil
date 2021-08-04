@@ -1,0 +1,13 @@
+https://github.com/smoqadam/PyFladesk
+
+Windows:
+
+pyinstaller -w -F --add-data "templates;templates" --add-data "static;static" app.py
+
+Linux:
+
+pyinstaller -w -F --add-data "templates:templates" --add-data "static:static" app.py
+
+OPen terminal PyCharm
+
+Press Alt+F12 to open terminal within PyCharm, then write in the command you wish to run and press enter.

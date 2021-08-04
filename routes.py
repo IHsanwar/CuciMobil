@@ -1,0 +1,42 @@
+from main import app, jsonify, send_from_directory, render_template, redirect
+from controller.CustomersController import *
+
+
+@app.route("/success", methods=["GET"])
+def success():
+    return render_template('success.html' )
+
+@app.route("/blankplain", methods=["GET"])
+def form_loading():
+    return 'Loading...'
+
+
+@app.route('/assets/<path:path>')
+def send_assets(path):
+    return send_from_directory('static/assets', path)
+
+
+@app.route("/", methods=["GET"])
+def home():
+    # ret = {"status": 1, "body": "Test"}
+    return render_template('index.html')
+
+
+# Customers
+@app.route("/customers", methods=["GET"])
+def customers():
+    customers = CustomerController.list_customers()
+    return render_template('references/customers-list.html', customers=customers )
+
+
+@app.route("/customer_form", methods=["GET"])
+def customer_form():
+    customer = CustomerController.detail_customers()
+    return render_template('references/customers-form.html', customer_nopol=customer.nopol,
+                           customer_owner=customer.owner, customer_phone=customer.phone )
+
+@app.route("/customer_form", methods=["POST"])
+def customer_save():
+    CustomerController.save_customers()
+    return redirect('/success')
+    # return render_template('references/customers-form.html' )

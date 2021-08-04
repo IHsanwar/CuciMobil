@@ -1,0 +1,4 @@
+pyfladesk
+flask
+pyinstaller
+peewee

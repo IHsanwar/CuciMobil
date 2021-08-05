@@ -19,21 +19,21 @@
                 <hr/>
                   <thead>
                   <tr>
-                      <th width="15%"> Kode</th>
-                      <th width="28%"> Nama operator</th>
+                      <th width="15%"> Nopol</th>
+                      <th width="28%"> Nama pemilik</th>
                       <th width="25%"> Nomor WA</th>
-                      <th width="20%"> Fee</th>
+                      <th width="20%"> Jenis</th>
                       <th width="12%"></th>
                   </tr>
                   </thead>
                   <tbody>
 
-                  {% for item in operators %}
+                  {% for item in customers %}
                   <tr>
-                      <td>{{ item.code }} </td>
-                      <td>{{ item.name }} </td>
+                      <td>{{ item.nopol }} </td>
+                      <td>{{ item.owner }} </td>
                       <td>{{ item.phone }} </td>
-                      <td>{{ item.fee }} </td>
+                      <td>{{ item.vehicle_model }} </td>
                       <td align="right">
                           <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
                           <button class="btn btn-primary btn-xs"  onclick="javscript:openModal({{ item.id }})"><i class="fa fa-pencil"></i></button>
@@ -57,7 +57,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah data petugas</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah data pelanggan</h5>
       </div>
       <div class="modal-body">
         <iframe src="/blankplain" id="testModalBox" width="100%" height="320px" style="border:0;overflow-y:scroll;overflow-x:hidden;" ></iframe>
@@ -76,7 +76,7 @@
 	 	$('#exampleModalLabel').html('Ubah data pelanggan')
 
 	 }
-	 $('#testModalBox').attr('src', '/operator_form?id=' + url)
+	 $('#testModalBox').attr('src', '/customer_form?id=' + url)
 	 $('#exampleModal').modal('show')
  }
 

@@ -1,4 +1,4 @@
-from connect import *
+from .connect import *
 
 
 class Operators(Model):

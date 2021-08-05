@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="row mt">
+      <div class="col-md-12">
+          <div class="content-panel">
+              <table class="table table-striped table-advance table-hover">
+
+                <div class="form-group">
+                    <div style="float:left;"><h4>&nbsp; Data transaksi</h4></div>
+                    <div class="pull-right" style="padding-top:7px;padding-right:20px;">
+                        <button class="btn btn-success " onclick="javscript:location.href='/transaction_add'">Tambah</button>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+
+                <hr/>
+                  <thead>
+                  <tr>
+                      <th width="15%"> Nopol</th>
+                      <th width="28%"> Layanan</th>
+                      <th width="25%"> Nomor WA</th>
+                      <th width="20%"> Biaya</th>
+                      <th width="12%"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  {% for item in customers %}
+                  <tr>
+                      <td>{{ item.nopol }} </td>
+                      <td>{{ item.owner }} </td>
+                      <td>{{ item.phone }} </td>
+                      <td>{{ item.vehicle_model }} </td>
+                      <td align="right">
+                          <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                          <button class="btn btn-primary btn-xs"  onclick="javscript:openModal({{ item.id }})"><i class="fa fa-pencil"></i></button>
+                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                      </td>
+                  </tr>
+                 {% endfor %}
+
+                  </tbody>
+              </table>
+          </div><!-- /content-panel -->
+      </div><!-- /col-md-12 -->
+  </div><!-- /row -->
+
+{% endblock %}

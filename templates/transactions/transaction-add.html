@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block jsfile %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.27/jquery.autocomplete.min.js"></script>
+{% endblock %}
+{% block content %}
+<div class="row mt">
+      <div class="col-md-12">
+
+
+<div class="form-panel" style="margin:0">
+
+          <form class="form-horizontal style-form" method="post">
+              <div class="form-group">
+                  <div > <label class="col-sm-12  control-label"><h4>&nbsp; Data transaksi</h4></label></div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Nomor polisi</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="autocomplete"  name="nopol" value="{{ customer_nopol }}">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Jenis layanan</label>
+                  <div class="col-sm-10">
+
+                      <select  class="form-control">
+                          {% for item in services %}
+                            <option value="{{ item.id }}">{{ item.name }}</option>
+                          {% endfor %}
+                      </select>
+
+
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label"> </label>
+                  <div class="col-sm-10">
+                   <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+              </div>
+          </form>
+      </div>
+      </div>
+</div>
+
+{% endblock %}
+
+{% block jsscript %}
+$(document).ready(function(){
+	var arrayReturn = [];
+	$.ajax({
+		url: "/list_nopol",
+		async: true,
+		dataType: 'json',
+		success: function (data) {
+            console.log(data)
+			for (var i = 0, len = data.length; i < len; i++) {
+				var id = (data[i].id).toString();
+				arrayReturn.push({'value' : data[i].name, 'data' : id});
+			}
+			//send parse data to autocomplete function
+			loadSuggestions(arrayReturn);
+		}
+	});
+	function loadSuggestions(options) {
+		$('#autocomplete').autocomplete({
+			lookup: options,
+			onSelect: function (suggestion) {
+				$('#selected_option').html(suggestion.value);
+			}
+		});
+	}
+  });
+{% endblock %}

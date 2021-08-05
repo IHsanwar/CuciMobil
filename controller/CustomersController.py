@@ -56,3 +56,9 @@ class CustomerController(object):
             customers.vehicle_model = vehicle_model
             return customers.save()
 
+
+    @staticmethod
+    def list_nopol():
+        q = request.args.get('q', '')
+        customers = Customers.select()
+        return customers

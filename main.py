@@ -7,6 +7,7 @@ app = Flask(__name__, template_folder="./templates")
 from routes import *
 from routes_customers import *
 from routes_operators import *
+from routes_transactions import *
 
 if __name__ == '__main__':
     # init_gui(app, port=5000, width=1100, height=600,  window_title="Aplikasi cuci mobil", argv=None)

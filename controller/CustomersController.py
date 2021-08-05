@@ -1,4 +1,4 @@
-from model.customer import *
+from model.Customers import *
 from main import request
 from random import randint
 import datetime
@@ -9,6 +9,13 @@ class CustomerController(object):
     @staticmethod
     def detail_customers( ):
         id = request.args.get('id', '0')
+        if id == '0':
+            Customers.nopol = ''
+            Customers.owner = ''
+            Customers.phone = ''
+            Customers.vehicle_model = 1
+            return Customers
+
         return Customers.get(Customers.id == int(id))
 
     @staticmethod
@@ -35,7 +42,11 @@ class CustomerController(object):
         if id == '0':
             id = randint(10000, 99999)
             ts = datetime.datetime.now().timestamp()
-            return Customers.create(id=id, nopol=nopol,phone=phone, owner=owner,vehicle_model=vehicle_model,
+            return Customers.create(id=id,
+                                    nopol=nopol,
+                                    phone=phone,
+                                    owner=owner,
+                                    vehicle_model=vehicle_model,
                                     created_on=ts)
         else:
             customers = Customers.get(Customers.id == int(id))
@@ -44,3 +55,4 @@ class CustomerController(object):
             customers.nopol = nopol
             customers.vehicle_model = vehicle_model
             return customers.save()
+

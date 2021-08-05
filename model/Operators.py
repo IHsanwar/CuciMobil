@@ -1,7 +1,7 @@
 from connect import *
 
 
-class Operator(Model):
+class Operators(Model):
     id = IntegerField()
     code = CharField()
     name = CharField()

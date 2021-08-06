@@ -21,3 +21,8 @@ def operator_save():
     return redirect('/success')
     # return render_template('references/customers-form.html' )
 
+@app.route("/operator_delete", methods=["GET"])
+def operator_delete():
+    OperatorsController.delete_operator()
+    return redirect('/operators')
+

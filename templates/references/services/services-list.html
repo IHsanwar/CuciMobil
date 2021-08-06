@@ -19,25 +19,27 @@
                 <hr/>
                   <thead>
                   <tr>
-                      <th width="15%"> Nopol</th>
-                      <th width="28%"> Nama pemilik</th>
-                      <th width="25%"> Nomor WA</th>
-                      <th width="20%"> Jenis</th>
-                      <th width="12%"></th>
+                      <th width="15%"> kode</th>
+                      <th width="25%"> Nama</th>
+                      <th width="20%"> jumlah operator</th>
+                      <th width="20%"> harga</th>
+                      <th width="10%"> dibuat tanggal</th>
+                      <th width="20%"></th>
                   </tr>
                   </thead>
                   <tbody>
 
-                  {% for item in customers %}
+                  {% for item in services %}
                   <tr>
-                      <td>{{ item.nopol }} </td>
-                      <td>{{ item.owner }} </td>
-                      <td>{{ item.phone }} </td>
-                      <td>{{ item.vehicle_model }} </td>
+                      <td>{{ item.code }} </td>
+                      <td>{{ item.name }} </td>
+                      <td>{{ item.many_operators }} </td>
+                      <td>{{ item.price }} </td>
+                      <td>{{ item.created_on }} </td>
                       <td align="right">
                           <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
                           <button class="btn btn-primary btn-xs"  onclick="javscript:openModal({{ item.id }})"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                          <button class="btn btn-danger btn-xs" onclick="javscript:deleteRecord({{ item.id }})"><i class="fa fa-trash-o "></i></button>
                       </td>
                   </tr>
                  {% endfor %}
@@ -57,7 +59,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah data pelanggan</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah data operator</h5>
       </div>
       <div class="modal-body">
         <iframe src="/blankplain" id="testModalBox" width="100%" height="320px" style="border:0;overflow-y:scroll;overflow-x:hidden;" ></iframe>
@@ -76,10 +78,17 @@
 	 	$('#exampleModalLabel').html('Ubah data pelanggan')
 
 	 }
-	 $('#testModalBox').attr('src', '/customer_form?id=' + url)
+	 $('#testModalBox').attr('src', '/service_form?id=' + url)
 	 $('#exampleModal').modal('show')
  }
 
+function deleteRecord(id){
+	 konfirmasi = confirm('Yakin delete data nih?')
+	 if( konfirmasi ){
+	    location.href='/service_delete?id=' + id
+	 }
+	 return
+}
 </script>
 
 {% endblock %}

@@ -8,6 +8,7 @@ from routes import *
 from routes_customers import *
 from routes_operators import *
 from routes_transactions import *
+from routes_services import *
 
 if __name__ == '__main__':
     # init_gui(app, port=5000, width=1100, height=600,  window_title="Aplikasi cuci mobil", argv=None)

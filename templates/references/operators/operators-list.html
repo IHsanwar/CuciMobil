@@ -9,7 +9,7 @@
               <table class="table table-striped table-advance table-hover">
 
                 <div >
-                    <div style="float:left;"><h4>&nbsp; Data pelanggan</h4></div>
+                    <div style="float:left;"><h4>&nbsp; Data operator</h4></div>
                     <div class="pull-right" style="padding-top:7px;padding-right:20px;">
                         <button class="btn btn-success " onclick="javscript:openModal(0)">Tambah</button>
                     </div>
@@ -35,9 +35,8 @@
                       <td>{{ item.phone }} </td>
                       <td>{{ item.fee }} </td>
                       <td align="right">
-                          <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
                           <button class="btn btn-primary btn-xs"  onclick="javscript:openModal({{ item.id }})"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                          <button class="btn btn-danger btn-xs" onclick="javscript:deleteRecord({{ item.id }})"><i class="fa fa-trash-o "></i></button>
                       </td>
                   </tr>
                  {% endfor %}
@@ -73,12 +72,20 @@
 <script type="text/javascript">
  function openModal(url){
 	 if( url != '0'){
-	 	$('#exampleModalLabel').html('Ubah data pelanggan')
+	 	$('#exampleModalLabel').html('Ubah data operator')
 
 	 }
 	 $('#testModalBox').attr('src', '/operator_form?id=' + url)
 	 $('#exampleModal').modal('show')
  }
+
+function deleteRecord(id){
+	 konfirmasi = confirm('Yakin delete data nih?')
+	 if( konfirmasi ){
+	    location.href='/operator_delete?id=' + id
+	 }
+	 return
+}
 
 </script>
 

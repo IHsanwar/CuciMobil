@@ -52,3 +52,9 @@ class OperatorsController(object):
             return Operators
 
         return Operators.get(Operators.id == int(id))
+
+    @staticmethod
+    def delete_operator():
+        delete_id = request.args.get('id', '0')
+        operator = Operators.get(Operators.id == delete_id)
+        return operator.delete_instance()

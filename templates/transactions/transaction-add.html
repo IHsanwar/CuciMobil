@@ -23,16 +23,18 @@
                   <label class="col-sm-2 col-sm-2 control-label">Jenis layanan</label>
                   <div class="col-sm-10">
 
-                      <select  class="form-control">
+                      <select  class="form-control" onchange="javascript:showOperatorsForm(this.value)">
+                          <option value="0">Pi lih layanan</option>
                           {% for item in services %}
                             <option value="{{ item.id }}">{{ item.name }}</option>
                           {% endfor %}
                       </select>
 
-
                   </div>
               </div>
+<div id="show" style="display:none">
 
+</div>
               <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label"> </label>
                   <div class="col-sm-10">
@@ -72,4 +74,29 @@ $(document).ready(function(){
 		});
 	}
   });
+
+    function list_operators(){
+        var layout = '<option value="0">Test</option>'
+        return layout
+    }
+
+    function showOperatorsForm(n){
+
+        options_operators = list_operators()
+
+        var t = new Array()
+        {% for item in services %}
+        t[{{item.id}}] = {{ item.many_operators }} {% endfor %}
+
+        var display = ''
+        for( i=1; i<= t[n]; i++){
+            display += '<div class="form-group"><label class="col-sm-2 col-sm-2 control-label">Operator '+ i +' </label>'
+            display += '<div class="col-sm-10"> <select  class="form-control">'+ options_operators +'</select>  </div> </div>'
+        }
+
+        $('#show').css("display","block");
+
+        $('#show').html(display);
+    }
+
 {% endblock %}

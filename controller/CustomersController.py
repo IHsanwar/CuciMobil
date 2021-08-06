@@ -58,6 +58,14 @@ class CustomerController(object):
 
 
     @staticmethod
+    def delete_customer():
+        delete_id = request.args.get('id', '0')
+        customer = Customers.get(Customers.id == delete_id)
+        return customer.delete_instance()
+
+
+    # Untuk cari data nomor polisi
+    @staticmethod
     def list_nopol():
         q = request.args.get('q', '')
         customers = Customers.select()

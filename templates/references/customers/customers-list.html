@@ -37,7 +37,7 @@
                       <td align="right">
                           <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
                           <button class="btn btn-primary btn-xs"  onclick="javscript:openModal({{ item.id }})"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                          <button class="btn btn-danger btn-xs" onclick="javscript:deleteRecord({{ item.id }})"><i class="fa fa-trash-o "></i></button>
                       </td>
                   </tr>
                  {% endfor %}
@@ -78,6 +78,14 @@
 	 }
 	 $('#testModalBox').attr('src', '/customer_form?id=' + url)
 	 $('#exampleModal').modal('show')
+ }
+
+ function deleteRecord(id){
+	 konfirmasi = confirm('Yakin delete data')
+	 if( konfirmasi ){
+	    location.href='/customer_delete?id=' + id
+	 }
+	 return
  }
 
 </script>

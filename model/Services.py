@@ -1,8 +1,8 @@
 from .connect import *
 
 
-class Services(Model):
-    id = IntegerField()
+class Servs(Model):
+    id = IntegerField(primary_key=True)
     code = CharField()
     name = CharField()
     price = IntegerField()
@@ -11,3 +11,4 @@ class Services(Model):
 
     class Meta:
         database = db
+        db_table = 'services'

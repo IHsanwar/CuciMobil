@@ -10,14 +10,12 @@ def services():
 
 @app.route("/service_form", methods=["GET"])
 def service_form():
-    service = ServicesController.detail_services()
-    print(service)
-    return render_template('references/services/services-form.html',services_name=service.name,
-                           services_code=service.code,services_price=service.price)
+    serv = ServicesController.detail_services()
+    return render_template('references/services/services-form.html',service_name=serv.name,
+                           service_code=serv.code,service_price=serv.price)
 
 @app.route("/service_form", methods=["POST"])
 def service_save():
-    print("8)")
     ServicesController.save_services()
     return redirect('/success')
     # return render_template('references/customers-form.html' )

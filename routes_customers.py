@@ -12,6 +12,7 @@ def customers():
 @app.route("/customer_form", methods=["GET"])
 def customer_form():
     customer = CustomerController.detail_customers()
+    print(customer)
     return render_template('references/customers/customers-form.html', customer_nopol=customer.nopol,
                            customer_owner=customer.owner, customer_phone=customer.phone )
 

@@ -11,6 +11,6 @@ class TransactionController(object):
 
     @staticmethod
     def prepare_data_customer():
-        response = {'services': Services.select()}
+        response = {'services': Servs.select()}
 
         return response

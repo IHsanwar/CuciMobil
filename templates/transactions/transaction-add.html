@@ -76,7 +76,7 @@ $(document).ready(function(){
   });
 
     function list_operators(){
-        var layout = '<option value="0">Test</option>'
+        var layout = '{% for item in operators %}<option value="0">Test</option>{% endfor %}'
         return layout
     }
 

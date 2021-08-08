@@ -1,7 +1,6 @@
 from model.Operators import *
 from main import request
 from random import randint
-import datetime
 
 class OperatorsController(object):
 
@@ -22,24 +21,25 @@ class OperatorsController(object):
         name = request.form['name']
         phone = request.form['phone']
         fee = request.form['fee']
-        print(id)
         if id == '0':
-            id = randint(10000, 99999)
-            ts = datetime.datetime.now().timestamp()
-            return Operators.create(id=id,
-                                    code=code,
-                                    phone=phone,
-                                    name=name,
-                                    fee=fee
-                                    )
+            id = randint(100000, 999999)
+            row = {
+                'id': id,
+                'name': name,
+                'phone': phone,
+                'code': code,
+                'fee': fee
+            }
+            return Operators.insert(row).execute()
 
         else:
-            operators = Operators.get(Operators.id == int(id))
-            operators.name = name
-            operators.phone = phone
-            operators.code = code
-            operators.fee = fee
-            return operators.save()
+            row = {
+                'name': name,
+                'phone': phone,
+                'code': code,
+                'fee': fee
+            }
+            return Operators.update(row).where(Operators.id == int(id)).execute()
 
     @staticmethod
     def detail_operators():

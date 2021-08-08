@@ -41,20 +41,25 @@ class CustomerController(object):
 
         if id == '0':
             id = randint(10000, 99999)
-            ts = datetime.datetime.now().timestamp()
-            return Customers.create(id=id,
-                                    nopol=nopol,
-                                    phone=phone,
-                                    owner=owner,
-                                    vehicle_model=vehicle_model,
-                                    created_on=ts)
+            ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            id = randint(100000, 999999)
+            row = {
+                'id': id,
+                'nopol': nopol,
+                'phone': phone,
+                'owner': owner,
+                'created_on': ts,
+                'vehicle_model': vehicle_model
+            }
+            return Customers.insert(row).execute()
         else:
-            customers = Customers.get(Customers.id == int(id))
-            customers.owner = owner
-            customers.phone = phone
-            customers.nopol = nopol
-            customers.vehicle_model = vehicle_model
-            return customers.save()
+            row = {
+                'owner': owner,
+                'phone': phone,
+                'nopol': nopol,
+                'vehicle_model': vehicle_model
+            }
+            return Customers.update(row).where(Customers.id == int(id)).execute()
 
 
     @staticmethod

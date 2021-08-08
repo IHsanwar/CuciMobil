@@ -1,7 +1,7 @@
 from model.Services import *
 from main import request
 from random import randint
-import datetime
+import datetime, time
 
 
 class ServicesController(object):
@@ -15,14 +15,14 @@ class ServicesController(object):
         price = request.form['price']
         if id == '0':
             id = randint(10000, 99999)
-            ts = datetime.datetime.now().timestamp()
+            ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             q = Servs.insert(id=id,  code=str(code), name=str(name),
                         many_operators=many_operator,  price=price, created_on =ts)
             return q.execute()
 
         query = "update services SET code ={code}, many_operators={ops}, name ='{name}' ," \
-                " price ='{price}' WHERE id={id}".format(id=int(id),code=code, ops=many_operator,
-                                                         name=name, price=price )
+                " price ='{price}'   WHERE id={id}".format(id=int(id),code=code, ops=many_operator,
+                                                         name=name, price=price  )
         return db.execute_sql(query)
 
 

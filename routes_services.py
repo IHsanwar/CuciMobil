@@ -5,6 +5,7 @@ from controller.ServicesController import *
 @app.route("/services", methods=["GET"])
 def services():
     services = ServicesController.list_services()
+    print(services)
     return render_template('references/services/services-list.html', services=services)
 
 
@@ -12,7 +13,7 @@ def services():
 def service_form():
     serv = ServicesController.detail_services()
     return render_template('references/services/services-form.html',service_name=serv.name,
-                           service_code=serv.code,service_price=serv.price)
+                           service_code=serv.code,service_price=serv.price,service_many_operators=serv.many_operator)
 
 @app.route("/service_form", methods=["POST"])
 def service_save():

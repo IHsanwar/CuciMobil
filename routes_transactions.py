@@ -2,6 +2,7 @@ from main import app, jsonify, send_from_directory, render_template, redirect
 from controller.TransactionController import *
 from controller.CustomersController import *
 from controller.ServicesController import *
+from controller.OperatorsController import *
 
 
 @app.route('/transactions',  methods=["GET"])
@@ -14,7 +15,8 @@ def transactions():
 def transaction_add():
     datas = TransactionController.prepare_data_customer()
     services = ServicesController.list_services()
-    return render_template('transactions/transaction-add.html' , services= services )
+    operators = OperatorsController.list_operators()
+    return render_template('transactions/transaction-add.html' , services= services , operators=operators )
 
 
 @app.route('/list_nopol',  methods=["GET"])

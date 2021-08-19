@@ -25,3 +25,4 @@ def service_save():
 def service_delete():
     ServicesController.delete_service()
     return redirect('/services')
+

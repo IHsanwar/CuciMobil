@@ -7,6 +7,12 @@
  <!-- BASIC FORM ELELEMNTS -->
       <div class="form-panel" style="margin:0">
           <form class="form-horizontal style-form" method="post">
+{% if error %}
+              {% for err_msg in error_msg %}
+              <div>{{err_msg}}</div>
+              {% endfor %}
+{% endif %}
+
               <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">kode petugas</label>
                   <div class="col-sm-10">

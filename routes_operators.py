@@ -11,12 +11,32 @@ def operator_form():
     operator = OperatorsController.detail_operators()
 
     return render_template('references/operators/operators-form.html',operator_kode=operator.code,
-                           operator_name=operator.name,operator_fee=operator.fee,operator_phone=operator.phone)
+                           operator_name=operator.name,operator_fee=operator.fee,operator_phone=operator.phone
+                           )
 
 
 @app.route("/operator_form", methods=["POST"])
 def operator_save():
-    print("8)")
+    error =  False
+    error_msg = []
+    operator_kode = request.form['code']
+    if operator_kode == "":
+        error = True
+        error_msg.append("kode belum diisi")
+
+    if operator_name == "":
+        error = True
+        error_msg.append("nama belum diisi")
+
+    if operator_fee == "":
+        error = True
+        error_msg.append("harga belum diisi")
+
+    if error:
+
+        return render_template('references/operators/operators-form.html',operator_kode=operator_kode,operator_name=operator_name,
+                               error=error,error_msg = error_msg)
+
     OperatorsController.save_operators()
     return redirect('/success')
     # return render_template('references/customers-form.html' )

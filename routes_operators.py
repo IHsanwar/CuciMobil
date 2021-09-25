@@ -24,7 +24,7 @@ def operator_save():
 
     if operator_kode == "":
         error = True
-        error_msg.append("kode belum diisi")
+        error_msg.append("kode belum disi")
 
     if operator_name == "":
         error = True

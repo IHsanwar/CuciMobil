@@ -20,6 +20,8 @@ def operator_save():
     error =  False
     error_msg = []
     operator_kode = request.form['code']
+    operator_name = request.form['name']
+
     if operator_kode == "":
         error = True
         error_msg.append("kode belum diisi")

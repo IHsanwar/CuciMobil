@@ -18,6 +18,10 @@ def transaction_add():
     operators = OperatorsController.list_operators()
     return render_template('transactions/transaction-add.html' , services= services , operators=operators )
 
+@app.route('/transaction_add', methods=["POST"])
+def transaction_submit():
+    print("submit")
+    return "hello"
 
 @app.route('/list_nopol',  methods=["GET"])
 def nopols():

@@ -1,26 +1,28 @@
 from model.Services import *
 from main import request
 from random import randint
-import datetime, time
+import sqlite3
+from datetime import datetime
 
-class ReportController(object):
-
-
+class ReportController:
+    
     @staticmethod
-    def detail_reports():
-        id = request.args.get('id', '0')
-        if id == '0':
-            transaction.code = ''
-            transaction.name = ''
-            transaction.price = ''
-            transaction.many_operator = ''
-            return Servs
-        else:
-            query = 'select * from transaction WHERE id={id}' .format(id=int(id))
-            cursor = db.execute_sql(query)
-            resp = cursor.fetchone()
-            transaction.code = resp[1]
-            transaction.name = resp[2]
-            transaction.price = resp[4]
-            transaction.many_operator = resp[3]
-        return Servs
+    def get_monthly_report(month):
+        conn = sqlite3.connect('./database_cumo.db')
+        cursor = conn.cursor()
+        
+        # Define the start and end dates for the month
+        start_date = datetime.strptime(month, "%Y-%m").replace(day=1)
+        end_date = (start_date.replace(month=start_date.month + 1) if start_date.month < 12 
+                    else start_date.replace(year=start_date.year + 1, month=1))
+        
+        # Query to get transactions within the month
+        query = """
+        SELECT * FROM transactions
+        WHERE created_on >= ? AND created_on < ?
+        """
+        cursor.execute(query, (start_date, end_date))
+        repo = cursor.fetchall()
+        
+        conn.close()
+        return repo

@@ -15,3 +15,4 @@ class Transactions(Model):
 
     class Meta:
         database = db
+        db_table = 'transactions'

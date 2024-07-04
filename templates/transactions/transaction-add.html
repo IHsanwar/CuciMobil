@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout_plain.html"  %}
 {% block jsfile %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.27/jquery.autocomplete.min.js"></script>
 {% endblock %}
@@ -9,38 +9,81 @@
 
 <div class="form-panel" style="margin:0">
 
-          <form class="form-horizontal style-form" method="post">
-              <div class="form-group">
-                  <div > <label class="col-sm-12  control-label"><h4>&nbsp; Data transaksi</h4></label></div>
-              </div>
-              <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">Nomor polisi</label>
-                  <div class="col-sm-10">
-                      <input type="text" class="form-control" id="autocomplete"  name="nopol" value="{{ customer_nopol }}">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">Jenis layanan</label>
-                  <div class="col-sm-10">
-
-                      <select  class="form-control" onchange="javascript:showOperatorsForm(this.value)">
-                          <option value="0">Pilih layanan</option>
-                          {% for item in services %}
-                            <option value="{{ item.id }}">{{ item.name }}</option>
-                          {% endfor %}
-                      </select>
-
-                  </div>
-              </div>
+    <form class="form-horizontal style-form" method="post">
+        <div class="form-group">
+            <div><label class="col-sm-12 control-label"><h4>&nbsp; Data transaksi</h4></label></div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 control-label">Customer ID</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="cust_id" value="{{ cust_id }}">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 control-label">Service ID</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="serv_id" value="{{ serv_id }}">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 control-label">Customer Nomor</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="cust_nomor" value="{{ cust_nomor }}">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 control-label">Customer Owner</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="cust_owner" value="{{ cust_owner }}">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 control-label">Customer Phone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="cust_phone" value="{{ cust_phone }}">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 control-label">Service Code</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="serv_code" value="{{ serv_code }}">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 control-label">Service Name</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="serv_name" onchange="javascript:showOperatorsForm(this.value)">
+                    <option value="0">Pilih layanan</option>
+                    {% for servs in services %}
+                    <option value="{{ servs.name }}">{{ servs.name }}</option>  
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 control-label">Price</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="price" value="{{ price }}">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+    
 <div id="show" style="display:none">
 
-</div>
-              <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label"> </label>
-                  <div class="col-sm-10">
-                   <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-              </div>
           </form>
       </div>
       </div>

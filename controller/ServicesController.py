@@ -23,7 +23,7 @@ class ServicesController(object):
         query = "update services SET code ={code}, many_operators={ops}, name ='{name}' ," \
                 " price ='{price}'   WHERE id={id}".format(id=int(id),code=code, ops=many_operator,
                                                          name=name, price=price  )
-        return db.execute_sql(query)
+        return db.execute_sql(query) 
 
 
     @staticmethod

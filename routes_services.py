@@ -23,7 +23,7 @@ def service_save():
     service_kode = request.form['code']
     service_name = request.form['name']
     service_fee = request.form['price']
-    service_many = request.form['many']
+    service_many = request.form['many_operators']
 
     if service_kode == "":
         error = True
@@ -46,8 +46,8 @@ def service_save():
                                service_name=service_name,
                                error=error, error_msg=error_msg)
     
-    #ServicesController.save_services()
-    return ("hello")
+    ServicesController.save_services()
+    return redirect('/success')
 
     # return render_template('references/customers-form.html' )
 

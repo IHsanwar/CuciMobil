@@ -25,8 +25,12 @@ def add_header(response):
 
 @app.route('/transaction_add',  methods=["GET"])
 def transaction_add():
-    TransactionController.list_transactions
-    return render_template('transactions/transaction-add.html')
+    trx =TransactionController.detail_transactions()
+    services = ServicesController.list_services()
+
+    return render_template('transactions/transaction-add.html', services=services, cust_id=trx.cust_id,
+                           serv_id=trx.serv_id, cust_nomor=trx.cust_nomor, cust_owner=trx.cust_owner,
+                           cust_phone=trx.cust_phone, serv_code=trx.serv_code, price=trx.price)
 
 @app.route('/transaction_add', methods=["POST"])
 def transaction_adds():
@@ -61,9 +65,7 @@ def transaction_adds():
     conn.commit()
     conn.close()
 
-    services = ServicesController.list_services()
-    print(services)
-    return render_template('transactions/transaction-add.html', services=services)
+    return redirect('/success')
 
 
 

@@ -58,3 +58,19 @@ class TransactionController(object):
         delete_id = request.args.get('id', '0')
         deltra = Transactions.get(Transactions.id == delete_id)
         return deltra.delete_instance()
+    
+
+    @staticmethod
+    def detail_transactions():
+        id = request.args.get('id', '0')
+        if id == '0':
+            Transactions.cust_id = ''
+            Transactions.serv_id = ''
+            Transactions.cust_nomor = ''
+            Transactions.cust_owner = ''
+            Transactions.cust_phone = ''
+            Transactions.serv_code =''
+            Transactions.price = ''
+            return Transactions
+
+        return Transactions.get(Transactions.id == int(id))

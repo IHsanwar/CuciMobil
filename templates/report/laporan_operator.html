@@ -9,7 +9,7 @@
               <table class="table table-striped table-advance table-hover">
 
                 <div >
-                    <div style="float:left;"><h4>&nbsp; Laporan Transaksi Bulan Ini </h4></div>
+                    <div style="float:left;"><h4>&nbsp; Laporan Operator Bulan Ini </h4></div>
                     <div class="pull-right" style="padding-top:7px;padding-right:20px;">
                         <button class="btn btn-success " onclick="javscript:openModal(0)">Tambah</button>
                     </div>
@@ -24,27 +24,20 @@
                   <tr>
                       <th width="5%"> ID</th>
                       <th width="10%"> Nama</th>
-                      <th width="20%"> Service ID</th>
-                      <th width="15%"> Service Code</th>
-                      <th width="15%"> Operator</th>
-                      <th width="10%"> Phone</th>
-                      <th width="10%">Service</th>
-                      <th width = "15%">Price (Rp)</th>
-                      <th width="10%"></th>
+                      <th width="20%"> Code Operator</th>
+                      <th width="20%"> Nomor Transaksi</th>
+                      <th width="5%"> Biaya</th>
                   </tr>
                   </thead>
                   <tbody>
 
-                {% for transaction in transactions %}
+                {% for transaction_operators in transaction_operators %}
                   <tr>
-                    <td>{{ transaction[0] }}</td>
-                    <td>{{ transaction[4] }}</td>
-                    <td>{{ transaction[2] }}</td>
-                    <td>{{ transaction[3] }}</td>
-                    <td>{{ transaction[7] }}</td>
-                    <td>{{ transaction[5] }}</td>
-                    <td>{{ transaction[6] }}</td>
-                    <td>{{ transaction[8] }}</td>
+                    <td>{{ transaction_operators[0] }}</td>
+                    <td>{{ transaction_operators[3] }}</td>
+                    <td>{{ transaction_operators[2] }}</td>
+                    <td>{{ transaction_operators[1] }}</td>
+                    <td>{{ transaction_operators[4] }}</td>
                   </tr>
                  {% endfor %}
 

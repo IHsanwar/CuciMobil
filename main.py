@@ -12,4 +12,4 @@ from routes_services import *
 from routes_report import *
 if __name__ == '__main__':
     # init_gui(app, port=5000, width=1100, height=600,  window_title="Aplikasi cuci mobil", argv=None)
-    app.run(port=5000)
+    app.run(port=7500)

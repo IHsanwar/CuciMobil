@@ -28,3 +28,8 @@ def download_monthly_report():
     
     return response
 
+@app.route('/report_operator' ,methods=["GET"])
+def operator_report():
+    transaction_operators = ReportController.get_operator_report()
+    
+    return render_template('report/laporan_operator.html', transaction_operators=transaction_operators)

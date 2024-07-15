@@ -26,3 +26,16 @@ class ReportController:
         
         conn.close()
         return repo
+        
+    @staticmethod
+    def get_operator_report():
+            conn = sqlite3.connect('./database_cumo.db')
+            cursor = conn.cursor()
+            query = """
+            SELECT * FROM transaction_operator
+            """
+            cursor.execute(query)
+            repo = cursor.fetchall()
+            
+            conn.close()
+            return repo

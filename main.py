@@ -1,8 +1,9 @@
-from flask import Flask, jsonify, send_from_directory, render_template, request, redirect ,flash,after_this_request
+from flask import Flask, jsonify, send_from_directory, render_template, request, redirect ,flash,after_this_request,url_for
 # from pyfladesk import init_gui
 import time
 
 app = Flask(__name__, template_folder="./templates")
+app.config['SECRET_KEY'] = '2dbe667ebabc766d8ce1db1d9de139b1'
 
 from routes import *
 from routes_customers import *

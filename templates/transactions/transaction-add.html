@@ -1,3 +1,4 @@
+
 {% extends "layout_plain.html"  %}
 {% block jsfile %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.27/jquery.autocomplete.min.js"></script>
@@ -7,80 +8,37 @@
       <div class="col-md-12">
 
 
-<div class="form-panel" style="margin:0">
+        <form class="form-horizontal style-form" method="post">
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label" for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+            </div>
 
-    <form class="form-horizontal style-form" method="post">
-        <div class="form-group">
-            <div><label class="col-sm-12 control-label"><h4>&nbsp; Data transaksi</h4></label></div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Customer ID</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="cust_id" value="{{ cust_id }}">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Service ID</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="serv_id" value="{{ serv_id }}">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Customer Nomor</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="cust_nomor" value="{{ cust_nomor }}">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Customer Owner</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="cust_owner" value="{{ cust_owner }}">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Customer Phone</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="cust_phone" value="{{ cust_phone }}">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Service Code</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="serv_code" value="{{ serv_code }}">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Service Name</label>
-            <div class="col-sm-10">
-                <select class="form-control" name="serv_name" onchange="javascript:showOperatorsForm(this.value)">
-                    <option value="0">Pilih layanan</option>
-                    {% for servs in services %}
-                    <option value="{{ servs.name }}">{{ servs.name }}</option>  
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Price</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="price" value="{{ price }}">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="col-sm-10 col-sm-offset-2">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-    </form>
+
+            <label for="service">Service:</label>
+            <select class="form-control" id="serv_id" name="serv_id" required>
+                <option value="">-- Select Service --</option>
+                {% for service in services %}
+                    <option value="{{ service.id }}">{{ service.name }}</option>
+                {% endfor %}
+            </select><br>
+    
+
+
+
+            <label for="service">Nomor Polisi:</label>
+            <select class="form-control" id="cus_id" name="cus_id" required>
+    
+                <option value="">Nomor Polisi</option>
+                {% for customer in customer %}
+                    <option value="{{ customer.id }}">{{ customer.nopol }}</option>
+                {% endfor %}
+            </select><br>
+    
+    
+            <label for="service_price">Service Price (automatic):</label>
+            <input type="text" id="service_price" name="service_price" readonly><br>
+            <input type="submit" value="Create Transaction">
     
 <div id="show" style="display:none">
 

@@ -54,3 +54,17 @@ class ServicesController(object):
     @staticmethod
     def list_services():
         return Servs.select()
+
+
+    def get_service_by_name(service_name):
+        try:
+            service = Servs.get(Servs.name == service_name)
+            return {
+                'id': service.id,
+                'name': service.name,
+                'code': service.code,
+                'price': service.price,
+                'many_operators': service.many_operators
+            }
+        except Servs.DoesNotExist:
+            return None

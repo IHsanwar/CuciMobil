@@ -1,8 +1,9 @@
-from main import app, jsonify, send_from_directory, render_template, redirect,after_this_request
+from main import app, jsonify, send_from_directory, render_template, redirect,after_this_request,url_for
 from controller.TransactionController import *
 from controller.CustomersController import *
 from controller.ServicesController import *
 from controller.OperatorsController import *
+from controller.CustomersController import *
 import logging
 logger = logging.getLogger(__name__)
 import sqlite3
@@ -14,65 +15,50 @@ def transactions():
     trxs = TransactionController.list_transactions()
     return render_template('transactions/transaction-list.html', transactions=trxs)
 
+@app.route('/transaction_add', methods=['GET', 'POST'])
+def transaction_form():
+    if request.method == 'POST':
+        name = request.form['name']
+        service_id = request.form['serv_id']
+        cus_id = request.form['cus_id']
+        dates = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
+        try:
+            service = Servs.get_by_id(service_id)
+            customer = Customers.get_by_id(cus_id)
+            transaction = Transactions.create(
+                cust_owner=name,
+                cust_id=customer.id,
+                cust_nomor=customer.nopol,
+                cust_phone=customer.phone,
+                serv_id=service,
+                price=service.price,
+                serv_name=service.name,
+                serv_code=service.code,
+                created_on=dates
+            )
+            # Redirect to bill page
+            return redirect(url_for('bill', transaction_id=transaction.id))
+        
+        except Exception as e:
+            print(f"Error: {e}")
+            db.rollback()
+            message = 'Error creating transaction!'
+            return render_template('transactions/transaction-add.html', services=Servs.select(), nopol=Customers.select(), error=message)
 
-@app.after_request
-def add_header(response):
-    # Disable caching for all routes
-    response.headers['Cache-Control'] = 'no-store'
-    return response
-
-
-@app.route('/transaction_add',  methods=["GET"])
-def transaction_add():
-    trx =TransactionController.detail_transactions()
-    services = ServicesController.list_services()
-
-    return render_template('transactions/transaction-add.html', services=services, cust_id=trx.cust_id,
-                           serv_id=trx.serv_id, cust_nomor=trx.cust_nomor, cust_owner=trx.cust_owner,
-                           cust_phone=trx.cust_phone, serv_code=trx.serv_code, price=trx.price)
-
-@app.route('/transaction_add', methods=["POST"])
-def transaction_adds():
-    ids = request.args.get('id', '0')
-    cust_id = request.form['cust_id']
-    serv_id = request.form['serv_id']
-    cust_nomor = request.form['cust_nomor']
-    cust_owner = request.form['cust_owner']
-    cust_phone = request.form['cust_phone']
-    serv_code = request.form['serv_code']
-    serv_name = request.form['serv_name']
-    price = request.form['price']
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
-
-    if ids == '0':
-        ids = randint(10000, 99999)
-        ts = datetime.datetime.now()
-        # Insert new record
-        cursor.execute("""
-            INSERT INTO Transactions (id, cust_id, serv_id, cust_nomor, cust_owner, cust_phone, serv_code, serv_name, price, created_on)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (ids, cust_id, serv_id, cust_nomor, cust_owner, cust_phone, serv_code, serv_name, price, ts))
     else:
-        # Update existing record
-        cursor.execute("""
-            UPDATE Transactions
-            SET cust_id=?, serv_id=?, cust_nomor=?, cust_owner=?, cust_phone=?, serv_code=?, serv_name=?, price=?
-            WHERE id=?
-            """, (cust_id, serv_id, cust_nomor, cust_owner, cust_phone, serv_code, serv_name, price, ids))
-
-    conn.commit()
-    conn.close()
-
-    return redirect('/success')
-
-
+        return render_template('transactions/transaction-add.html', services=Servs.select(), customer=Customers.select())
 
 @app.route("/transaction-delete", methods=["GET"])
 def transaction_delete():
     TransactionController.delete_transactions()
     return redirect('/transactions')
+
+
+@app.route('/transaction-bill/<int:transaction_id>')
+def bill(transaction_id):
+    transaction = Transactions.get_by_id(transaction_id)
+    return render_template('transactions/bill.html', transaction=transaction)
 
 
 @app.route('/list_nopol',  methods=["GET"])

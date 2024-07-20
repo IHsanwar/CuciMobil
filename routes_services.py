@@ -56,3 +56,10 @@ def service_delete():
     ServicesController.delete_service()
     return redirect('/services')
 
+@app.route('/service_details/<int:serv_id>', methods=["GET"])
+def service_detail(serv_id):
+    try:
+        service = Servs.get(Servs.serv_id == serv_id)
+        return jsonify({"serv_id": service.serv_id, "price": service.price, "serv_code": service.serv_code})
+    except Servs.DoesNotExist:
+        return jsonify({"error": "Service not found"}), 404

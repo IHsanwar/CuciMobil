@@ -2,135 +2,133 @@
 
 {% block content %}
 <div class="row">
-                  <div class="col-lg-9 main-chart">
+    <div class="col-lg-9 main-chart">
+        <div class="row mtbox">
+            <div class="col-md-3 col-sm-3 col-md-offset-1 box0">
+                <div class="box1">
+                    <span class="fa fa-car fa-4x"></span>
+                    <h3>Total Transactions</h3>
+                </div>
+                <p>Today's Transactions: <strong>{{ total_revenue }}</strong></p>
+            </div>
+            <div class="col-md-3 col-sm-3 box0">
+                <div class="box1">
+                    <span class="fa fa-money fa-4x"></span>
+                    <h3>Total Revenue</h3>
+                </div>
+                <p>Today's Revenue: <strong>$2000</strong></p>
+            </div>
+            <div class="col-md-3 col-sm-3 box0">
+                <div class="box1">
+                    <span class="fa fa-users fa-4x"></span>
+                    <h3>Total Customers</h3>
+                </div>
+                <p>Total Customers: <strong>120</strong></p>
+            </div>
+        </div><!-- /row mt -->
 
-                  	<div class="row mtbox">
-                  		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
-                  			<div class="box1">
-					  			<h3>Aplikasi Cuci Mobil</h3>
-                  			</div>
-					  			<p>Kasir Untuk Pencucian Mobil</p>
-                  		</div>
-                  		
-                          
-                  	</div><!-- /row mt -->
-                        
+        <div class="row mt">
+            <!--CUSTOM CHART START -->
+            <div class="border-head">
+                <h3>REVENUE OVERVIEW</h3>
+            </div>
+            <div class="custom-bar-chart">
+                <ul class="y-axis">
+                    <li><span>1,000</span></li>
+                    <li><span>800</span></li>
+                    <li><span>600</span></li>
+                    <li><span>400</span></li>
+                    <li><span>200</span></li>
+                    <li><span>0</span></li>
+                </ul>
+                <div class="bar">
+                    <div class="title">JAN</div>
+                    <div class="value tooltips" data-original-title="800" data-toggle="tooltip" data-placement="top">80%</div>
+                </div>
+                <div class="bar">
+                    <div class="title">FEB</div>
+                    <div class="value tooltips" data-original-title="600" data-toggle="tooltip" data-placement="top">60%</div>
+                </div>
+                <div class="bar">
+                    <div class="title">MAR</div>
+                    <div class="value tooltips" data-original-title="700" data-toggle="tooltip" data-placement="top">70%</div>
+                </div>
+                <div class="bar">
+                    <div class="title">APR</div>
+                    <div class="value tooltips" data-original-title="400" data-toggle="tooltip" data-placement="top">40%</div>
+                </div>
+                <div class="bar">
+                    <div class="title">MAY</div>
+                    <div class="value tooltips" data-original-title="500" data-toggle="tooltip" data-placement="top">50%</div>
+                </div>
+                <div class="bar">
+                    <div class="title">JUN</div>
+                    <div class="value tooltips" data-original-title="620" data-toggle="tooltip" data-placement="top">62%</div>
+                </div>
+                <div class="bar">
+                    <div class="title">JUL</div>
+                    <div class="value tooltips" data-original-title="750" data-toggle="tooltip" data-placement="top">75%</div>
+                </div>
+            </div>
+            <!--custom chart end-->
+        </div><!-- /row -->
+    </div><!-- /col-lg-9 END SECTION MIDDLE -->
 
-					<div class="row mt">
-                      <!--CUSTOM CHART START -->
-                      <div class="border-head">
-                          <h3>VISITS</h3>
-                      </div>
-                      <div class="custom-bar-chart">
-                          <ul class="y-axis">
-                              <li><span>10.000</span></li>
-                              <li><span>8.000</span></li>
-                              <li><span>6.000</span></li>
-                              <li><span>4.000</span></li>
-                              <li><span>2.000</span></li>
-                              <li><span>0</span></li>
-                          </ul>
-                          <div class="bar">
-                              <div class="title">JAN</div>
-                              <div class="value tooltips" data-original-title="8.500" data-toggle="tooltip" data-placement="top">85%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">FEB</div>
-                              <div class="value tooltips" data-original-title="5.000" data-toggle="tooltip" data-placement="top">50%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">MAR</div>
-                              <div class="value tooltips" data-original-title="6.000" data-toggle="tooltip" data-placement="top">60%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">APR</div>
-                              <div class="value tooltips" data-original-title="4.500" data-toggle="tooltip" data-placement="top">45%</div>
-                          </div>
-                          <div class="bar">
-                              <div class="title">MAY</div>
-                              <div class="value tooltips" data-original-title="3.200" data-toggle="tooltip" data-placement="top">32%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">JUN</div>
-                              <div class="value tooltips" data-original-title="6.200" data-toggle="tooltip" data-placement="top">62%</div>
-                          </div>
-                          <div class="bar">
-                              <div class="title">JUL</div>
-                              <div class="value tooltips" data-original-title="7.500" data-toggle="tooltip" data-placement="top">75%</div>
-                          </div>
-                      </div>
-                      <!--custom chart end-->
-					</div><!-- /row -->
+    <!-- **********************************************************************************************************************************************************
+    RIGHT SIDEBAR CONTENT
+    *********************************************************************************************************************************************************** -->
+    <div class="col-lg-3 ds">
+        <!-- CALENDAR -->
+        <div id="calendar" class="mb">
+            <div class="panel green-panel no-margin">
+                <div class="panel-body">
+                    <div id="my-calendar"></div>
+                </div>
+            </div>
+        </div><!-- /calendar -->
 
-                  </div><!-- /col-lg-9 END SECTION MIDDLE -->
+        <!-- RECENT TRANSACTIONS -->
+        <h3>Recent Transactions</h3>
+        <div class="desc">
+            <p><strong>Transaction #2345</strong><br/> 
+            Customer: John Doe <br/> 
+            Amount: $25.00</p>
+        </div>
+        <div class="desc">
+            <p><strong>Transaction #2346</strong><br/> 
+            Customer: Jane Smith <br/> 
+            Amount: $35.00</p>
+        </div>
+        <div class="desc">
+            <p><strong>Transaction #2347</strong><br/> 
+            Customer: Paul Adams <br/> 
+            Amount: $40.00</p>
+        </div>
 
-
-      <!-- **********************************************************************************************************************************************************
-      RIGHT SIDEBAR CONTENT
-      *********************************************************************************************************************************************************** -->
-
-                  <div class="col-lg-3 ds">
-                        <!-- CALENDAR-->
-                        <div id="calendar" class="mb">
-                            <div class="panel green-panel no-margin">
-                                <div class="panel-body">
-                                    <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
-                                        <div class="arrow"></div>
-                                        <h3 class="popover-title" style="disadding: none;"></h3>
-                                        <div id="date-popover-content" class="popover-content"></div>
-                                    </div>
-                                    <div id="my-calendar"></div>
-                                </div>
-                            </div>
-                        </div><!-- / calendar -->
-
-                       <!-- USERS ONLINE SECTION -->
-						<h3>TEAM MEMBERS</h3>
-                      <!-- First Member -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<img class="img-circle" src="assets/img/ui-divya.jpg" width="35px" height="35px" align="">
-                      	</div>
-                      	<div class="details">
-                      		<p><a href="#">DIVYA MANIAN</a><br/>
-                      		   <muted>Available</muted>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Fourth Member -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<img class="img-circle" src="assets/img/ui-zac.jpg" width="35px" height="35px" align="">
-                      	</div>
-                      	<div class="details">
-                      		<p><a href="#">Zac Sniders</a><br/>
-                      		   <muted>Available</muted>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Fifth Member -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<img class="img-circle" src="assets/img/ui-sam.jpg" width="35px" height="35px" align="">
-                      	</div>
-                      	<div class="details">
-                      		<p><a href="#">Marcel Newman</a><br/>
-                      		   <muted>Available</muted>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Fifth Member -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<img class="img-circle" src="assets/img/ui-sam.jpg" width="35px" height="35px" align="">
-                      	</div>
-                      	<div class="details">
-                      		<p><a href="#">Marcel Newman</a><br/>
-                      		   <muted>Available</muted>
-                      		</p>
-                      	</div>
-                      </div>
-
-                  </div><!-- /col-lg-3 -->
-              </div><! --/row -->
+        <!-- TEAM MEMBERS -->
+        <h3>TEAM MEMBERS</h3>
+        <!-- First Member -->
+        <div class="desc">
+            <div class="thumb">
+                <img class="img-circle" src="assets/img/ui-divya.jpg" width="35px" height="35px" align="">
+            </div>
+            <div class="details">
+                <p><a href="#">DIVYA MANIAN</a><br/>
+                   <muted>Available</muted>
+                </p>
+            </div>
+        </div>
+        <!-- More Members -->
+        <div class="desc">
+            <div class="thumb">
+                <img class="img-circle" src="assets/img/ui-zac.jpg" width="35px" height="35px" align="">
+            </div>
+            <div class="details">
+                <p><a href="#">Zac Sniders</a><br/>
+                   <muted>Available</muted>
+                </p>
+            </div>
+        </div>
+    </div><!-- /col-lg-3 -->
+</div><!-- /row -->
 {% endblock %}

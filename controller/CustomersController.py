@@ -2,7 +2,13 @@ from model.Customers import *
 from main import request
 from random import randint
 import datetime
-
+import qrcode
+from io import BytesIO
+from PIL import Image
+import base64
+import datetime
+from random import randint
+from flask import request
 
 class CustomerController(object):
 
@@ -27,12 +33,17 @@ class CustomerController(object):
                 cust.vehicle_model = 'Mobil'
             else:
                 cust.vehicle_model = 'Sepeda motor'
+            
+            # Convert the QR code into base64 image format
+            qr_code_image = f"data:image/png;base64,{cust.qr_code}"
+            cust.qr_code_image = qr_code_image  # Add the image string to the customer object
+            
             datas.append(cust)
-
+        
         return datas
 
     @staticmethod
-    def save_customers( ):
+    def save_customers():
         id = request.args.get('id', '0')
         nopol = request.form['nopol']
         owner = request.form['owner']
@@ -43,15 +54,35 @@ class CustomerController(object):
             id = randint(10000, 99999)
             ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             id = randint(100000, 999999)
+
+            # Generate QR Code for the id
+            qr = qrcode.QRCode(
+                version=1,
+                error_correction=qrcode.constants.ERROR_CORRECT_L,
+                box_size=10,
+                border=4,
+            )
+            qr.add_data(str(id))
+            qr.make(fit=True)
+            img = qr.make_image(fill='black', back_color='white')
+
+            # Save the image as a base64 string or store it in a file
+            buffered = BytesIO()
+            img.save(buffered, format="PNG")
+            qr_code_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+
             row = {
                 'id': id,
                 'nopol': nopol,
                 'phone': phone,
                 'owner': owner,
                 'created_on': ts,
-                'vehicle_model': vehicle_model
+                'vehicle_model': vehicle_model,
+                'qr_code': qr_code_base64  # Assuming you save the QR code in base64 in DB
             }
+
             return Customers.insert(row).execute()
+
         else:
             row = {
                 'owner': owner,

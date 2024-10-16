@@ -17,32 +17,33 @@
                 </div>
 
                 <hr/>
-                  <thead>
+                <thead>
                   <tr>
-                      <th width="15%"> Nopol</th>
-                      <th width="28%"> Nama pemilik</th>
-                      <th width="25%"> Nomor WA</th>
-                      <th width="20%"> Jenis</th>
-                      <th width="12%"></th>
+                    <th width="10%"> Nopol</th>
+                    <th width="10%"> QR</th>
+                    <th width="25%"> Nama pemilik</th>
+                    <th width="25%"> Nomor WA</th>
+                    <th width="10%"> Jenis</th>
+                    <th width="20%">aksi</th>
                   </tr>
-                  </thead>
-                  <tbody>
-
+                </thead>
+                <tbody>
                   {% for item in customers %}
                   <tr>
-                      <td>{{ item.nopol }} </td>
-                      <td>{{ item.owner }} </td>
-                      <td>{{ item.phone }} </td>
-                      <td>{{ item.vehicle_model }} </td>
-                      <td align="right">
-                          <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                          <button class="btn btn-primary btn-xs"  onclick="javscript:openModal({{ item.id }})"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs" onclick="javscript:deleteRecord({{ item.id }})"><i class="fa fa-trash-o "></i></button>
-                      </td>
+                    <td>{{ item.nopol }} </td>
+                    <td><img src="{{ item.qr_code_image }}" alt="Customer QR Code" width="50"></td> 
+                    <td>{{ item.owner }} </td>
+                    <td>{{ item.phone }} </td>
+                    <td>{{ item.vehicle_model }} </td>
+                    <td align="right">
+                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                      <button class="btn btn-primary btn-xs" onclick="javscript:openModal({{ item.id }})"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-danger btn-xs" onclick="javscript:deleteRecord({{ item.id }})"><i class="fa fa-trash-o "></i></button>
+                    </td>
                   </tr>
-                 {% endfor %}
-
-                  </tbody>
+                  {% endfor %}
+                </tbody>
+                
               </table>
           </div><!-- /content-panel -->
       </div><!-- /col-md-12 -->

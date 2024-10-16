@@ -19,7 +19,7 @@
                 <hr/>
                   <thead>
                   <tr>
-                      <th width="15%"> kode</th>
+                      <th width="10%"> kode</th>
                       <th width="25%"> Nama</th>
                       <th width="20%"> jumlah operator</th>
                       <th width="20%"> harga</th>
@@ -32,9 +32,10 @@
                   {% for item in services %}
                   <tr>
                       <td>{{ item.code }} </td>
+                      <td>{{ item.qr_code }} </td>
                       <td>{{ item.name }} </td>
                       <td>{{ item.many_operators }} </td>
-                      <td>{{ item.price }} </td>
+                      
                       <td>{{ item.created_on }} </td>
                       <td align="right">
                           <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>

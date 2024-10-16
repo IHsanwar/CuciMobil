@@ -8,7 +8,7 @@ class Customers(Model):
     phone = CharField()
     vehicle_model = IntegerField()
     created_on = CharField()
-
+    qr_code = CharField()
     class Meta:
         database = db
 

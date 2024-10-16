@@ -4,6 +4,9 @@ from controller.CustomersController import *
 from controller.ServicesController import *
 from controller.OperatorsController import *
 from controller.CustomersController import *
+from datetime import date
+import peewee
+
 import logging
 logger = logging.getLogger(__name__)
 import sqlite3
@@ -59,7 +62,6 @@ def transaction_delete():
 def bill(transaction_id):
     transaction = Transactions.get_by_id(transaction_id)
     return render_template('transactions/bill.html', transaction=transaction)
-
 
 @app.route('/list_nopol',  methods=["GET"])
 def nopols():

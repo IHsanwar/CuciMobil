@@ -24,7 +24,7 @@
                       <th width="20%"> jumlah operator</th>
                       <th width="20%"> harga</th>
                       <th width="10%"> dibuat tanggal</th>
-                      <th width="20%"></th>
+                      <th width="20%">Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -32,13 +32,12 @@
                   {% for item in services %}
                   <tr>
                       <td>{{ item.code }} </td>
-                      <td>{{ item.qr_code }} </td>
                       <td>{{ item.name }} </td>
                       <td>{{ item.many_operators }} </td>
                       
+                      <td>{{ item.price }} </td>
                       <td>{{ item.created_on }} </td>
                       <td align="right">
-                          <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
                           <button class="btn btn-primary btn-xs"  onclick="javscript:openModal({{ item.id }})"><i class="fa fa-pencil"></i></button>
                           <button class="btn btn-danger btn-xs" onclick="javscript:deleteRecord({{ item.id }})"><i class="fa fa-trash-o "></i></button>
                       </td>

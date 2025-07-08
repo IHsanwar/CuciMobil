@@ -66,7 +66,6 @@ class CustomerController(object):
             qr.make(fit=True)
             img = qr.make_image(fill='black', back_color='white')
 
-            # Save the image as a base64 string or store it in a file
             buffered = BytesIO()
             img.save(buffered, format="PNG")
             qr_code_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')

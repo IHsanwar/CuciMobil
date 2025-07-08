@@ -2,3 +2,4 @@ pyfladesk
 flask
 pyinstaller
 peewee
+qrcode

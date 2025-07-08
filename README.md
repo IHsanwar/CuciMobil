@@ -1,4 +1,4 @@
-# 🚗 Car Wash App - Python
+# 🚗 Car Wash App
 
 This application is a simple car wash service management system built with Python. It allows efficient management of customer data, service types, transactions, and reporting.
 

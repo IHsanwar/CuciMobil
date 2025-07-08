@@ -12,10 +12,10 @@ This application is a simple car wash service management system built with Pytho
 
 ## 🛠 Technologies Used
 
-- **Python** (Core logic)
-- **Flask** (for web interface)
-- **SQLite** / **MySQL** (Database)
-- **Peewee** (ORM if used)
+- **Python** 
+- **Flask** 
+- **SQLite**
+- **Peewee** 
 
 ## 📦 Installation
 

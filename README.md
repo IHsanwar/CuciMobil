@@ -7,9 +7,8 @@ This application is a simple car wash service management system built with Pytho
 - 📋 Customer data management
 - 🧼 Multiple car wash service options (Exterior Wash, Full Wash, Detailing, etc.)
 - 💰 Transaction recording with automatic total calculation
-- 📆 Daily/weekly transaction history
-- 🔍 Search and filter features
-- 🧾 Print transaction receipt (optional)
+- 📆 Monthy transaction history
+- 🧾 Print transaction receipt
 
 ## 🛠 Technologies Used
 
@@ -17,7 +16,6 @@ This application is a simple car wash service management system built with Pytho
 - **Flask** (for web interface)
 - **SQLite** / **MySQL** (Database)
 - **Peewee** (ORM if used)
-- **FPDF** or **ReportLab** (if receipt printing is included)
 
 ## 📦 Installation
 
